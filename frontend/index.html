@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IHAVEGPU — Computer Hardware Store</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      .nav-logo-icon i {
+        font-size: 15px;
+        color: var(--bg-primary);
+      }
+      .fa-nav {
+        font-size: 13px;
+        margin-right: 6px;
+      }
+      .category-icon i {
+        font-size: 24px;
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <a href="/index.html" class="nav-logo">
+        <div class="nav-logo-icon"><i class="fa-solid fa-bolt"></i></div>
+        IHAVE<span>GPU</span>
+      </a>
+      <ul class="nav-links">
+        <li>
+          <a href="/index.html" class="active"
+            ><i class="fa-solid fa-house fa-nav"></i>Home</a
+          >
+        </li>
+        <li>
+          <a href="/pages/products.html"
+            ><i class="fa-solid fa-store fa-nav"></i>Products</a
+          >
+        </li>
+        <li>
+          <a href="/pages/about.html"
+            ><i class="fa-solid fa-circle-info fa-nav"></i>About</a
+          >
+        </li>
+      </ul>
+      <div class="nav-right">
+        <button class="btn-cart" onclick="openCart()">
+          <i class="fa-solid fa-cart-shopping"></i>
+          Cart
+          <span class="cart-badge">0</span>
+        </button>
+      </div>
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu">
+      <a href="/index.html" class="active"
+        ><i class="fa-solid fa-house fa-nav"></i>Home</a
+      >
+      <a href="/pages/products.html"
+        ><i class="fa-solid fa-microchip fa-nav"></i>Products</a
+      >
+      <a href="/pages/about.html"
+        ><i class="fa-solid fa-circle-info fa-nav"></i>About</a
+      >
+    </div>
+
+    <!-- CART SIDEBAR -->
+    <div class="cart-overlay"></div>
+    <aside class="cart-sidebar">
+      <div class="cart-header">
+        <span class="cart-title">Your Cart</span>
+        <button class="btn-close cart-close-btn">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="cart-empty">
+        <div class="cart-empty-icon">
+          <i
+            class="fa-solid fa-cart-shopping"
+            style="font-size: 48px; opacity: 0.4; color: var(--text-muted)"
+          ></i>
+        </div>
+        <p>Your cart is empty</p>
+      </div>
+      <div class="cart-items"></div>
+      <div class="cart-footer">
+        <div class="cart-total-row">
+          <span class="cart-total-label">Total</span>
+          <span class="cart-total-price">฿0</span>
+        </div>
+        <button class="btn-checkout" disabled>CHECKOUT</button>
+      </div>
+    </aside>
+
+    <!-- PRODUCT MODAL -->
+    <div class="modal-overlay">
+      <div class="modal">
+        <div class="modal-header">
+          <h3>Product Detail</h3>
+          <button class="btn-close" onclick="closeModal()">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body"></div>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-grid-bg"></div>
+        <div class="hero-inner">
+          <div class="hero-content">
+            <div class="hero-label">Next-Gen Hardware</div>
+            <h1>Build Your<em>Dream PC</em></h1>
+            <p class="hero-desc">
+              Premium computer components sourced directly from top
+              manufacturers. From entry-level builds to workstation powerhouses
+              — we have everything you need.
+            </p>
+            <div class="hero-actions">
+              <a href="/pages/products.html" class="btn-primary">
+                <i class="fa-solid fa-bolt"></i> Shop Now
+              </a>
+              <a href="/pages/about.html" class="btn-secondary">
+                <i class="fa-solid fa-circle-info"></i> Learn More
+              </a>
+            </div>
+            <div class="hero-stats">
+              <div>
+                <div class="hero-stat-num" id="stat-products">—</div>
+                <div class="hero-stat-label">
+                  <i class="fa-solid fa-box-open fa-nav"></i>Products
+                </div>
+              </div>
+              <div>
+                <div class="hero-stat-num" id="stat-brands">—</div>
+                <div class="hero-stat-label">
+                  <i class="fa-solid fa-tags fa-nav"></i>Brands
+                </div>
+              </div>
+              <div>
+                <div class="hero-stat-num">24hr</div>
+                <div class="hero-stat-label">
+                  <i class="fa-solid fa-truck-fast fa-nav"></i>Delivery
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-card-stack">
+              <div class="card-back">
+                <img
+                  src="https://images.unsplash.com/photo-1587202372634-32705e3bf49c?w=500"
+                  alt=""
+                />
+              </div>
+              <div class="card-front">
+                <img
+                  src="https://ihcupload.s3.ap-southeast-1.amazonaws.com/img/product/products95118_800.jpg"
+                  alt=""
+                />
+                <div class="card-front-info">
+                  <span>RTX 5090</span>
+                  <span>฿124,990</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATEGORIES -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Shop by <span>Category</span></h2>
+          <a href="/pages/products.html" class="section-link"
+            >View all <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="categories-grid" id="home-categories"></div>
+      </section>
+
+      <!-- FEATURED PRODUCTS -->
+      <section class="section" style="padding-top: 0">
+        <div class="section-header">
+          <h2 class="section-title">Featured <span>Products</span></h2>
+          <a href="/pages/products.html" class="section-link"
+            >View all <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="products-grid" id="featured-products"></div>
+      </section>
+
+      <!-- BANNER -->
+      <section
+        style="
+          background: var(--bg-secondary);
+          border-top: 1px solid var(--border);
+          border-bottom: 1px solid var(--border);
+          padding: 48px 24px;
+          margin-bottom: 0;
+        "
+      >
+        <div
+          style="
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+            flex-wrap: wrap;
+          "
+        >
+          <div>
+            <div
+              style="
+                font-family: var(--font-mono);
+                font-size: 11px;
+                color: var(--accent);
+                letter-spacing: 2px;
+                margin-bottom: 8px;
+              "
+            >
+              <i class="fa-solid fa-tag" style="margin-right: 6px"></i>SPECIAL
+              OFFER
+            </div>
+            <h2
+              style="
+                font-family: var(--font-display);
+                font-size: clamp(22px, 3vw, 36px);
+                font-weight: 700;
+                letter-spacing: 1px;
+                margin-bottom: 8px;
+              "
+            >
+              <i
+                class="fa-solid fa-truck-fast"
+                style="margin-right: 8px; color: var(--accent)"
+              ></i
+              >Free Shipping on Orders Over ฿5,000
+            </h2>
+            <p style="color: var(--text-secondary); font-size: 14px">
+              Use code
+              <code
+                style="
+                  background: var(--accent-dim);
+                  color: var(--accent);
+                  padding: 2px 8px;
+                  border-radius: 4px;
+                  font-family: var(--font-mono);
+                "
+                >IHAVEGPU2026</code
+              >
+              at checkout
+            </p>
+          </div>
+          <a href="/pages/products.html" class="btn-primary">
+            <i class="fa-solid fa-bolt"></i> Shop Now
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="/index.html" class="nav-logo" style="margin-bottom: 8px">
+            <div
+              class="nav-logo-icon"
+              style="width: 24px; height: 24px; font-size: 12px"
+            >
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            IHAVE<span>GPU</span>
+          </a>
+          <p>
+            Your trusted source for premium computer hardware. Building dreams
+            one component at a time since 2020.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li>
+              <a href="/pages/products.html"
+                ><i class="fa-solid fa-layer-group fa-nav"></i>All Products</a
+              >
+            </li>
+            <li>
+              <a href="/pages/products.html?cat=gpu"
+                ><i class="fa-solid fa-display fa-nav"></i>Graphics Cards</a
+              >
+            </li>
+            <li>
+              <a href="/pages/products.html?cat=cpu"
+                ><i class="fa-solid fa-microchip fa-nav"></i>Processors</a
+              >
+            </li>
+            <li>
+              <a href="/pages/products.html?cat=ram"
+                ><i class="fa-solid fa-memory fa-nav"></i>Memory</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Info</h4>
+          <ul>
+            <li>
+              <a href="/pages/about.html"
+                ><i class="fa-solid fa-circle-info fa-nav"></i>About Us</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fa-solid fa-shield-halved fa-nav"></i>Warranty</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fa-solid fa-rotate-left fa-nav"></i>Returns</a
+              >
+            </li>
+            <li>
+              <a href="#"><i class="fa-solid fa-truck fa-nav"></i>Shipping</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>
+              <a href="#"
+                ><i class="fa-solid fa-envelope fa-nav"></i
+                >support@ihavegpu.th</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fa-solid fa-phone fa-nav"></i>+66 2 xxx xxxx</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fa-solid fa-location-dot fa-nav"></i>Pathum thani,
+                Thailand</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          <i class="fa-regular fa-copyright" style="margin-right: 4px"></i>2026
+          IHAVEGPU. All rights reserved.
+        </p>
+        <p
+          style="
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+          "
+        >
+          <i class="fa-solid fa-server fa-nav"></i>Powered by Node.js ·
+          PostgreSQL · Docker
+        </p>
+      </div>
+    </footer>
+
+    <script src="/js/app.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        await loadCategories(document.getElementById("home-categories"), false);
+
+        const data = await apiFetch("/products?sort=id&order=ASC");
+        const grid = document.getElementById("featured-products");
+        if (data && data.products && grid) {
+          grid.innerHTML = data.products
+            .slice(0, 8)
+            .map((p) => renderProductCard(p))
+            .join("");
+          document.getElementById("stat-products").textContent = data.total;
+
+          // Extract unique brands from products
+          const uniqueBrands = [
+            ...new Set(data.products.map((p) => p.brand).filter((b) => b)),
+          ];
+          document.getElementById("stat-brands").textContent =
+            uniqueBrands.length;
+        }
+
+        document
+          .querySelectorAll("#home-categories .category-card")
+          .forEach((card) => {
+            card.addEventListener("click", (e) => {
+              e.preventDefault();
+              const name = card.querySelector(".category-name").textContent;
+              if (name === "All") {
+                window.location.href = "/pages/products.html";
+              } else {
+                const cat = allCategories.find((c) => c.name === name);
+                if (cat)
+                  window.location.href = `/pages/products.html?cat=${cat.slug}`;
+              }
+            });
+          });
+      });
+    </script>
+  </body>
+</html>

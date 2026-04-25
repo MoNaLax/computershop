@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products — IHAVEGPU</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      .nav-logo-icon i {
+        font-size: 15px;
+        color: var(--bg-primary);
+      }
+      .fa-nav {
+        font-size: 13px;
+        margin-right: 6px;
+      }
+      .category-icon i {
+        font-size: 24px;
+        color: var(--accent);
+      }
+
+      /* Filter bar ติดใต้ navbar */
+      .filter-bar {
+        position: sticky;
+        top: 64px;
+        z-index: 100;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <a href="/index.html" class="nav-logo">
+        <div class="nav-logo-icon"><i class="fa-solid fa-bolt"></i></div>
+        IHAVE<span>GPU</span>
+      </a>
+      <ul class="nav-links">
+        <li>
+          <a href="/index.html"><i class="fa-solid fa-house fa-nav"></i>Home</a>
+        </li>
+        <li>
+          <a href="/pages/products.html" class="active"
+            ><i class="fa-solid fa-store fa-nav"></i>Products</a
+          >
+        </li>
+        <li>
+          <a href="/pages/about.html"
+            ><i class="fa-solid fa-circle-info fa-nav"></i>About</a
+          >
+        </li>
+      </ul>
+      <div class="nav-right">
+        <div class="search-bar">
+          <i
+            class="fa-solid fa-magnifying-glass"
+            style="color: var(--text-muted); font-size: 13px"
+          ></i>
+          <input
+            type="text"
+            placeholder="Search components..."
+            id="main-search"
+          />
+        </div>
+        <button class="btn-cart" onclick="openCart()">
+          <i class="fa-solid fa-cart-shopping"></i>
+          Cart
+          <span class="cart-badge">0</span>
+        </button>
+      </div>
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu">
+      <a href="/index.html"><i class="fa-solid fa-house fa-nav"></i>Home</a>
+      <a href="/pages/products.html" class="active"
+        ><i class="fa-solid fa-microchip fa-nav"></i>Products</a
+      >
+      <a href="/pages/about.html"
+        ><i class="fa-solid fa-circle-info fa-nav"></i>About</a
+      >
+    </div>
+
+    <!-- FILTER BAR — อยู่ใต้ navbar ทันที sticky -->
+    <div class="filter-bar">
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          flex-wrap: wrap;
+          flex: 1;
+        "
+      >
+        <span class="filter-label"
+          ><i class="fa-solid fa-filter fa-nav"></i>Filter:</span
+        >
+        <div class="filter-chips" id="category-chips">
+          <button class="chip active" onclick="filterByCategory('')">
+            <i class="fa-solid fa-border-all fa-nav"></i>All
+          </button>
+        </div>
+      </div>
+      <div class="filter-sort">
+        <span class="filter-label" id="filter-label-desktop">
+          <i class="fa-solid fa-arrow-up-wide-short fa-nav"></i>Sort:
+        </span>
+        <select class="select-styled" id="sort-select">
+          <option value="id-ASC">Default</option>
+          <option value="price-ASC">Price: Low → High</option>
+          <option value="price-DESC">Price: High → Low</option>
+          <option value="name-ASC">Name A–Z</option>
+          <option value="name-DESC">Name Z–A</option>
+        </select>
+      </div>
+      <button
+        class="btn-clear-filter"
+        onclick="clearFilters()"
+        title="Clear all filters"
+      >
+        <i class="fa-solid fa-x"></i> Clear
+      </button>
+    </div>
+
+    <!-- CART SIDEBAR -->
+    <div class="cart-overlay"></div>
+    <aside class="cart-sidebar">
+      <div class="cart-header">
+        <span class="cart-title">Your Cart</span>
+        <button class="btn-close cart-close-btn">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="cart-empty">
+        <div class="cart-empty-icon">
+          <i
+            class="fa-solid fa-cart-shopping"
+            style="font-size: 48px; opacity: 0.4; color: var(--text-muted)"
+          ></i>
+        </div>
+        <p>Your cart is empty</p>
+      </div>
+      <div class="cart-items"></div>
+      <div class="cart-footer">
+        <div class="cart-total-row">
+          <span class="cart-total-label">Total</span>
+          <span class="cart-total-price">฿0</span>
+        </div>
+        <button class="btn-checkout" disabled>CHECKOUT</button>
+      </div>
+    </aside>
+
+    <!-- PRODUCT MODAL -->
+    <div class="modal-overlay">
+      <div class="modal">
+        <div class="modal-header">
+          <h3>Product Detail</h3>
+          <button class="btn-close" onclick="closeModal()">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body"></div>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <!-- PAGE HEADER -->
+      <div class="page-header">
+        <h1>All <span>Products</span></h1>
+        <p id="product-count-label">
+          Browse our full range of computer hardware
+        </p>
+      </div>
+
+      <!-- PRODUCTS GRID -->
+      <div class="section">
+        <div class="products-grid" id="main-products-grid"></div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="/index.html" class="nav-logo" style="margin-bottom: 8px">
+            <div
+              class="nav-logo-icon"
+              style="width: 24px; height: 24px; font-size: 12px"
+            >
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            IHAVE<span>GPU</span>
+          </a>
+          <p>
+            Your trusted source for premium computer hardware. Building dreams
+            one component at a time since 2020.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li>
+              <a href="/pages/products.html"
+                ><i class="fa-solid fa-layer-group fa-nav"></i>All Products</a
+              >
+            </li>
+            <li>
+              <a href="/pages/products.html?cat=gpu"
+                ><i class="fa-solid fa-display fa-nav"></i>Graphics Cards</a
+              >
+            </li>
+            <li>
+              <a href="/pages/products.html?cat=cpu"
+                ><i class="fa-solid fa-microchip fa-nav"></i>Processors</a
+              >
+            </li>
+            <li>
+              <a href="/pages/products.html?cat=ram"
+                ><i class="fa-solid fa-memory fa-nav"></i>Memory</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Info</h4>
+          <ul>
+            <li>
+              <a href="/pages/about.html"
+                ><i class="fa-solid fa-circle-info fa-nav"></i>About Us</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fa-solid fa-shield-halved fa-nav"></i>Warranty</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fa-solid fa-rotate-left fa-nav"></i>Returns</a
+              >
+            </li>
+            <li>
+              <a href="#"><i class="fa-solid fa-truck fa-nav"></i>Shipping</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>
+              <a href="#"
+                ><i class="fa-solid fa-envelope fa-nav"></i
+                >support@ihavegpu.th</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fa-solid fa-phone fa-nav"></i>+66 2 xxx xxxx</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fa-solid fa-location-dot fa-nav"></i>Pathum thani,
+                Thailand</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          <i class="fa-regular fa-copyright" style="margin-right: 4px"></i>2026
+          IHAVEGPU. All rights reserved.
+        </p>
+        <p
+          style="
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+          "
+        >
+          <i class="fa-solid fa-server fa-nav"></i>Powered by Node.js ·
+          PostgreSQL · Docker
+        </p>
+      </div>
+    </footer>
+
+    <script src="/js/app.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        // Load categories as chips
+        const res = await apiFetch("/categories");
+        const chips = document.getElementById("category-chips");
+        if (res && chips) {
+          const cats = Array.isArray(res) ? res : res.categories || [];
+          allCategories = cats;
+          cats.forEach((c) => {
+            const btn = document.createElement("button");
+            btn.className = "chip";
+            btn.innerHTML = `<i class="${CATEGORY_ICONS[c.slug] || "fa-solid fa-microchip"} fa-nav"></i>${c.name}`;
+            btn.onclick = () => filterByCategory(c.slug);
+            chips.appendChild(btn);
+          });
+        }
+
+        // Sort handler
+        const sortSelect = document.getElementById("sort-select");
+        if (sortSelect) {
+          sortSelect.addEventListener("change", (e) => {
+            const [sort, order] = e.target.value.split("-");
+            currentSort = sort;
+            currentOrder = order;
+            loadProductsToGrid();
+          });
+        }
+
+        // Check URL for category param
+        const urlParams = new URLSearchParams(window.location.search);
+        const catParam = urlParams.get("cat");
+        if (catParam) {
+          currentCategory = catParam;
+          document.querySelectorAll(".chip").forEach((c) => {
+            const match = allCategories.find((x) => x.slug === catParam);
+            c.classList.toggle(
+              "active",
+              match ? c.textContent.includes(match.name) : false,
+            );
+          });
+        }
+
+        // Search
+        const searchInput = document.getElementById("main-search");
+        if (searchInput) {
+          let t;
+          searchInput.addEventListener("input", (e) => {
+            clearTimeout(t);
+            searchQuery = e.target.value.trim();
+            t = setTimeout(() => loadProductsToGrid(), 400);
+          });
+        }
+
+        loadProductsToGrid();
+      });
+
+      // Override filterByCategory for chips on this page
+      window.filterByCategory = function (slug) {
+        currentCategory = slug;
+        document
+          .querySelectorAll(".chip")
+          .forEach((c) => c.classList.remove("active"));
+        event?.target?.classList.add("active");
+        if (!slug) document.querySelector(".chip")?.classList.add("active");
+        loadProductsToGrid();
+      };
+
+      async function loadProductsToGrid() {
+        const grid = document.getElementById("main-products-grid");
+        if (!grid) return;
+
+        grid.innerHTML = Array(8)
+          .fill(0)
+          .map(() => `<div class="skeleton" style="height:340px"></div>`)
+          .join("");
+
+        let qs = "";
+        if (currentCategory)
+          qs += `&category=${encodeURIComponent(currentCategory)}`;
+        if (searchQuery) qs += `&search=${encodeURIComponent(searchQuery)}`;
+        qs += `&sort=${currentSort}&order=${currentOrder}`;
+
+        const data = await apiFetch(`/products?${qs.slice(1)}`);
+        const label = document.getElementById("product-count-label");
+
+        if (!data || !data.products) {
+          grid.innerHTML = `<div class="products-empty"><p><i class="fa-solid fa-triangle-exclamation" style="margin-right:8px"></i>Failed to load products.</p></div>`;
+          return;
+        }
+
+        if (data.products.length === 0) {
+          grid.innerHTML = `<div class="products-empty"><p><i class="fa-solid fa-box-open" style="margin-right:8px"></i>No products found.</p></div>`;
+          if (label) label.textContent = "0 products found";
+          return;
+        }
+
+        if (label)
+          label.textContent = `${data.total} product${data.total !== 1 ? "s" : ""} found`;
+        grid.innerHTML = data.products
+          .map((p) => renderProductCard(p))
+          .join("");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login - IHAVEGPU</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      .nav-logo-icon i {
+        font-size: 15px;
+        color: var(--bg-primary);
+      }
+      .fa-nav {
+        font-size: 13px;
+        margin-right: 6px;
+      }
+      .category-icon i {
+        font-size: 24px;
+        color: var(--accent);
+      }
+
+      /* Filter bar ติดใต้ navbar */
+      .filter-bar {
+        position: sticky;
+        top: 64px;
+        z-index: 100;
+      }
+    </style>
+  </head>
+  <body class="login-page">
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <a href="/index.html" class="nav-logo">
+        <div class="nav-logo-icon"><i class="fa-solid fa-bolt"></i></div>
+        IHAVE<span>GPU</span>
+      </a>
+    </nav>
+
+    <!-- LOGIN CONTAINER -->
+    <div class="login-container">
+      <div class="login-card">
+        <div class="login-header">
+          <div class="login-icon">🔐</div>
+          <h1>Admin Login</h1>
+          <p>Enter your credentials to access the admin panel</p>
+        </div>
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              placeholder="Enter username"
+              required
+              autocomplete="username"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter password"
+              required
+              autocomplete="current-password"
+            />
+          </div>
+
+          <button type="submit" class="btn-login">Sign In</button>
+
+          <div id="errorMessage" class="error-message"></div>
+        </form>
+
+        <div class="login-back">
+          <a href="/index.html">← Back to Home</a>
+        </div>
+      </div>
+
+      <!-- BACKGROUND DECORATION -->
+      <div class="login-bg-decoration">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+      </div>
+    </div>
+
+    <script src="/js/login.js"></script>
+  </body>
+</html>

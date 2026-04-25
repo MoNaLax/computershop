@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — IHAVEGPU</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      /* FA icon sizing helpers */
+      .nav-logo-icon i {
+        font-size: 15px;
+        color: var(--bg-primary);
+      }
+      .cart-empty-icon i {
+        font-size: 48px;
+        opacity: 0.4;
+        color: var(--text-muted);
+      }
+      .value-icon i {
+        font-size: 28px;
+        color: var(--accent);
+      }
+      .team-avatar i {
+        font-size: 34px;
+        color: var(--text-secondary);
+      }
+      .fa-nav {
+        font-size: 14px;
+        margin-right: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <a href="/index.html" class="nav-logo">
+        <div class="nav-logo-icon">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        IHAVE<span>GPU</span>
+      </a>
+      <ul class="nav-links">
+        <li>
+          <a href="/index.html"><i class="fa-solid fa-house fa-nav"></i>Home</a>
+        </li>
+        <li>
+          <a href="/pages/products.html"
+            ><i class="fa-solid fa-store fa-nav"></i>Products</a
+          >
+        </li>
+        <li>
+          <a href="/pages/about.html" class="active"
+            ><i class="fa-solid fa-circle-info fa-nav"></i>About</a
+          >
+        </li>
+        <li>
+      </ul>
+      <div class="nav-right">
+        <button class="btn-cart" onclick="openCart()">
+          <i class="fa-solid fa-cart-shopping"></i>
+          Cart
+          <span class="cart-badge">0</span>
+        </button>
+      </div>
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu">
+      <a href="/index.html"><i class="fa-solid fa-house fa-nav"></i>Home</a>
+      <a href="/pages/products.html"
+        ><i class="fa-solid fa-microchip fa-nav"></i>Products</a
+      >
+      <a href="/pages/about.html" class="active"
+        ><i class="fa-solid fa-circle-info fa-nav"></i>About</a
+      >
+
+    </div>
+
+    <!-- CART SIDEBAR -->
+    <div class="cart-overlay"></div>
+    <aside class="cart-sidebar">
+      <div class="cart-header">
+        <span class="cart-title">Your Cart</span>
+        <button class="btn-close cart-close-btn">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="cart-empty">
+        <div class="cart-empty-icon">
+          <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+        <p>Your cart is empty</p>
+      </div>
+      <div class="cart-items"></div>
+      <div class="cart-footer">
+        <div class="cart-total-row">
+          <span class="cart-total-label">Total</span>
+          <span class="cart-total-price">฿0</span>
+        </div>
+        <button class="btn-checkout" disabled>CHECKOUT</button>
+      </div>
+    </aside>
+
+    <div class="page-content">
+      <!-- ABOUT HERO -->
+      <div class="about-hero">
+        <div class="about-hero-inner">
+          <div
+            style="
+              font-family: var(--font-mono);
+              font-size: 11px;
+              color: var(--accent);
+              letter-spacing: 3px;
+              margin-bottom: 16px;
+              text-transform: uppercase;
+            "
+          >
+            <i class="fa-solid fa-bookmark" style="margin-right: 6px"></i>Our
+            Story
+          </div>
+          <h1>
+            Powering the Builders<br /><span style="color: var(--accent)"
+              >of Tomorrow</span
+            >
+          </h1>
+          <p style="margin-top: 20px">
+            IHAVEGPU was founded in Pathum thani in 2020 with a simple mission: make
+            premium computer hardware accessible to every enthusiast, creator,
+            and professional in Thailand. We believe your PC should be a tool
+            that empowers not limits your ambition.
+          </p>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div
+        style="
+          background: var(--bg-primary);
+          border-bottom: 1px solid var(--border);
+        "
+      >
+        <div
+          style="
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 32px;
+            text-align: center;
+          "
+        >
+          <div>
+            <div
+              style="
+                font-family: var(--font-display);
+                font-size: 42px;
+                font-weight: 700;
+                color: var(--accent);
+              "
+            >
+              5000+
+            </div>
+            <div
+              style="
+                font-size: 12px;
+                color: var(--text-muted);
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                margin-top: 4px;
+              "
+            >
+              <i class="fa-solid fa-users" style="margin-right: 4px"></i>Happy
+              Customers
+            </div>
+          </div>
+          <div>
+            <div
+              style="
+                font-family: var(--font-display);
+                font-size: 42px;
+                font-weight: 700;
+                color: var(--accent);
+              "
+            >
+              200+
+            </div>
+            <div
+              style="
+                font-size: 12px;
+                color: var(--text-muted);
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                margin-top: 4px;
+              "
+            >
+              <i class="fa-solid fa-box-open" style="margin-right: 4px"></i
+              >Products
+            </div>
+          </div>
+          <div>
+            <div
+              style="
+                font-family: var(--font-display);
+                font-size: 42px;
+                font-weight: 700;
+                color: var(--accent);
+              "
+            >
+              15+
+            </div>
+            <div
+              style="
+                font-size: 12px;
+                color: var(--text-muted);
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                margin-top: 4px;
+              "
+            >
+              <i class="fa-solid fa-tags" style="margin-right: 4px"></i>Top
+              Brands
+            </div>
+          </div>
+          <div>
+            <div
+              style="
+                font-family: var(--font-display);
+                font-size: 42px;
+                font-weight: 700;
+                color: var(--accent);
+              "
+            >
+              4.9
+              <i
+                class="fa-solid fa-star"
+                style="font-size: 32px; color: var(--accent)"
+              ></i>
+            </div>
+            <div
+              style="
+                font-size: 12px;
+                color: var(--text-muted);
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                margin-top: 4px;
+              "
+            >
+              Avg. Rating
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VALUES -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Our <span>Values</span></h2>
+        </div>
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fa-solid fa-certificate"></i>
+            </div>
+            <div class="value-title">Authenticity</div>
+            <p class="value-desc">
+              Every product we sell is 100% genuine, sourced directly from
+              manufacturers or authorized distributors. No grey-market, no
+              counterfeits — ever.
+            </p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div class="value-title">Speed</div>
+            <p class="value-desc">
+              Same-day dispatch on in-stock orders, next-day delivery within
+              Bangkok, 2-day nationwide. Your build shouldn't wait.
+            </p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div class="value-title">Warranty</div>
+            <p class="value-desc">
+              All products come with full manufacturer warranty. Our dedicated
+              support team handles claims so you don't have to.
+            </p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fa-solid fa-handshake"></i>
+            </div>
+            <div class="value-title">Expertise</div>
+            <p class="value-desc">
+              Our team consists of PC builders, overclockers, and engineers.
+              Real advice from people who actually know hardware.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TEAM -->
+      <section class="section" style="padding-top: 0">
+        <div class="section-header">
+          <h2 class="section-title">The <span>Team</span></h2>
+        </div>
+        <div class="team-grid">
+          <a href="/pages/login.html">
+          <div class="team-card">
+            <div class="team-avatar">
+                <i class="fa-solid fa-user-tie"></i>
+            </div>
+            
+            <div class="team-name" >Thanawat I.</div>
+            <div class="team-role">Developer</div>
+            <p
+              style="
+                font-size: 12px;
+                color: var(--text-muted);
+                margin-top: 8px;
+                line-height: 1.5;
+                text-decoration: none;
+              "
+            > 
+              6705257
+            </p>
+          </div>
+          </a>
+          <a href="/pages/login.html">
+          <div class="team-card">
+            <div class="team-avatar">
+              <i class="fa-solid fa-user-gear"></i>
+            </div>
+            <div class="team-name">Dechchapon M.</div>
+            <div class="team-role">Developer</div>
+            <p
+              style="
+                font-size: 12px;
+                color: var(--text-muted);
+                margin-top: 8px;
+                line-height: 1.5;
+                text-decoration: none;
+              "
+            >
+              6807728
+            </p>
+          </div>
+        </div>
+        </a>
+      </section>
+
+      <!-- CTA -->
+      <div
+        style="
+          background: var(--bg-secondary);
+          border-top: 1px solid var(--border);
+          padding: 60px 24px;
+          text-align: center;
+        "
+      >
+        <div style="max-width: 600px; margin: 0 auto">
+          <h2
+            style="
+              font-family: var(--font-display);
+              font-size: clamp(24px, 4vw, 40px);
+              font-weight: 700;
+              letter-spacing: 2px;
+              text-transform: uppercase;
+              margin-bottom: 16px;
+            "
+          >
+            Ready to <span style="color: var(--accent)">Build?</span>
+          </h2>
+          <p
+            style="
+              color: var(--text-secondary);
+              font-size: 15px;
+              line-height: 1.7;
+              margin-bottom: 28px;
+            "
+          >
+            Browse over 200 products from the world's top hardware brands.
+            Same-day dispatch available.
+          </p>
+          <a
+            href="/pages/products.html"
+            class="btn-primary"
+            style="font-size: 16px; padding: 14px 40px"
+          >
+            <i class="fa-solid fa-arrow-right" style="margin-right: 8px"></i
+            >Shop Products
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="/index.html" class="nav-logo" style="margin-bottom: 8px">
+            <div
+              class="nav-logo-icon"
+              style="width: 24px; height: 24px; font-size: 12px"
+            >
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            IHAVE<span>GPU</span>
+          </a>
+          <p>
+            Your trusted source for premium computer hardware. Building dreams
+            one component at a time since 2020.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li>
+              <a href="/pages/products.html"
+                ><i class="fa-solid fa-layer-group fa-nav"></i>All Products</a
+              >
+            </li>
+            <li>
+              <a href="/pages/products.html?cat=gpu"
+                ><i class="fa-solid fa-display fa-nav"></i>Graphics Cards</a
+              >
+            </li>
+            <li>
+              <a href="/pages/products.html?cat=cpu"
+                ><i class="fa-solid fa-microchip fa-nav"></i>Processors</a
+              >
+            </li>
+            <li>
+              <a href="/pages/products.html?cat=ram"
+                ><i class="fa-solid fa-memory fa-nav"></i>Memory</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Info</h4>
+          <ul>
+            <li>
+              <a href="/pages/about.html"
+                ><i class="fa-solid fa-circle-info fa-nav"></i>About Us</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fa-solid fa-shield-halved fa-nav"></i>Warranty</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fa-solid fa-rotate-left fa-nav"></i>Returns</a
+              >
+            </li>
+            <li>
+              <a href="#"><i class="fa-solid fa-truck fa-nav"></i>Shipping</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>
+              <a href="#"
+                ><i class="fa-solid fa-envelope fa-nav"></i
+                >support@ihavegpu.th</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fa-solid fa-phone fa-nav"></i>+66 2 xxx xxxx</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fa-solid fa-location-dot fa-nav"></i>Pathum thani,
+                Thailand</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          <i class="fa-regular fa-copyright" style="margin-right: 4px"></i>2026
+          IHAVEGPU. All rights reserved.
+        </p>
+        <p
+          style="
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+          "
+        >
+          <i class="fa-solid fa-server fa-nav"></i>Powered by Node.js ·
+          PostgreSQL · Docker
+        </p>
+      </div>
+    </footer>
+
+    <script src="/js/app.js"></script>
+  </body>
+</html>
